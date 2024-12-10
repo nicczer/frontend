@@ -1,9 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from "./components/Home";
-import Customer from './components/Customer/Customer';
-import Manager from './components/Manager/Manager';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "./components/Home/Home";
+import Customer from "./components/Customer/Customer";
+import Manager from "./components/Manager/Manager";
+import "./App.css";
 
 //function Navbar() {
 //    return (
@@ -66,8 +66,8 @@ function App() {
                 <main>
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/" element={<Home />} />
-                        <Route path="/" element={<Home />} />
+                        <Route path="/customer" element={<Customer />} />
+                        <Route path="/manager" element={<Manager />} />
                     <Routes>
                 <main>
             </div>
