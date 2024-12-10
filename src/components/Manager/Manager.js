@@ -1,86 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import './Manager.css';
 
-function Manager() {
-    const [policies, setPolicies] = useState([]);
-    const [formData, setFormData] = useState({
-        policyName: '',
-        policyType: '',
-        termsAndConditions: '',
-        premium: ''
-    });
-
-    useEffect(() => {
-        axios.get('/api/insurance/customers')
-            .then((response) => {
-                setPolicies(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching policies:', error);
-            });
-    }, []);
+function ManagerPortal() {
+    const [customerId, setCustomerId] = useState('');
+    const [actionMessage, setActionMessage] = useState('');
 
     const handleInputChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setCustomerId(e.target.value);
     };
 
-    const addPolicy = () => {
-        axios.post('/api/insurance/policies', formData)
+    const handlePolicyAction = (action) => {
+        if (!customerId) {
+            setActionMessage('Please enter a valid Customer ID.');
+            return;
+        }
+
+        // Replace this URL with your actual backend API endpoint
+        const apiUrl = `http://localhost:8080/api/policies/${customerId}/${action.toLowerCase()}`;
+
+        fetch(apiUrl, {
+            method: 'POST',
+        })
             .then((response) => {
-                alert('Policy added successfully!');
-                setPolicies([...policies, response.data]);
+                if (response.ok) {
+                    setActionMessage(`Policy successfully ${action.toLowerCase()}d.`);
+                } else {
+                    setActionMessage('Failed to perform the action. Please check the Customer ID.');
+                }
             })
-            .catch((error) => {
-                console.error('Error adding policy:', error);
-                alert('Failed to add policy. Please try again.');
+            .catch(() => {
+                setActionMessage('An error occurred. Please try again.');
             });
     };
 
     return (
-        <div className="manager-container">
-            <h1> Policies</h1>
-            <table className="modern-table">
-                <thead>
-                    <tr>
-                        <th>Customer Name</th>
-                        <th>Policy Type</th>
-                        <th>Policy Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {policies.map((policy) => (
-                        <tr key={policy.customerId}>
-                            <td>{policy.name}</td>
-                            <td>{policy.policyType}</td>
-                            <td>{policy.policyStatus}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-            <h2 className="form-title">Add a New Policy</h2>
-            <form className="modern-form" onSubmit={(e) => { e.preventDefault(); addPolicy(); }}>
-                <div className="form-group">
-                    <label htmlFor="policyName">Policy Name</label>
-                    <input id="policyName" name="policyName" type="text" placeholder="Enter policy name" onChange={handleInputChange} required />
+        <div className="manager-portal">
+            <h1>Manager Portal</h1>
+            <div className="policy-action-form">
+                <label htmlFor="customerId">Enter Customer ID:</label>
+                <input
+                    type="text"
+                    id="customerId"
+                    placeholder="Enter Customer ID"
+                    value={customerId}
+                    onChange={handleInputChange}
+                />
+                <div className="action-buttons">
+                    <button onClick={() => handlePolicyAction('Approve')}>Approve</button>
+                    <button onClick={() => handlePolicyAction('Deny')}>Deny</button>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="policyType">Policy Type</label>
-                    <input id="policyType" name="policyType" type="text" placeholder="Enter policy type" onChange={handleInputChange} required />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="termsAndConditions">Terms and Conditions</label>
-                    <textarea id="termsAndConditions" name="termsAndConditions" placeholder="Enter terms and conditions" onChange={handleInputChange} required />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="premium">Premium</label>
-                    <input id="premium" name="premium" type="number" placeholder="Enter premium amount" onChange={handleInputChange} required />
-                </div>
-                <button type="submit" className="form-button">Add Policy</button>
-            </form>
+                {actionMessage && <p className="action-message">{actionMessage}</p>}
+            </div>
         </div>
     );
 }
 
-export default Manager;
+export default ManagerPortal;
