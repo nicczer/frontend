@@ -5,6 +5,7 @@ function CustomerForm() {
     const [formData, setFormData] = useState({
         customerName: '',
         policyType: '',
+        policyId: '', // New Policy ID field
         customerDisease: 'No', // Default to "No"
         customerSurgery: 'No' // Default to "No"
     });
@@ -85,6 +86,18 @@ function CustomerForm() {
                     />
                 </div>
                 <div className="form-group">
+                    <label htmlFor="policyId">Policy ID</label>
+                    <input
+                        id="policyId"
+                        name="policyId"
+                        type="text"
+                        placeholder="Enter policy ID"
+                        value={formData.policyId}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
                     <label htmlFor="customerDisease">Customer Disease</label>
                     <select
                         id="customerDisease"
@@ -127,4 +140,3 @@ function CustomerForm() {
 }
 
 export default CustomerForm;
-
