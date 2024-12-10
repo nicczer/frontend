@@ -5,18 +5,6 @@ import Customer from "./components/Customer/Customer";
 import Manager from "./components/Manager/Manager";
 import "./App.css";
 
-function Navbar() {
-    return (
-        <nav className="modern-navbar">
-            <ul className="nav-links">
-                <li><Link to="/" className="nav-link">Home</Link></li>
-                <li><Link to="/customer">Customer Portal</Link></li>
-                <li><Link to="/manager">Manager Portal</Link></li>
-            </ul>
-        </nav>
-    );
-}
-
 function App() {
     return (
         <Router>
@@ -28,6 +16,18 @@ function App() {
                 </Routes>
             </div>
         </Router>
+    );
+}
+
+function Navbar() {
+    return (
+        <nav className="modern-navbar">
+            <ul className="nav-links">
+                <li><Link to="/" className="nav-link">Home</Link></li>
+                <li><Link to="/customer">Customer Portal</Link></li>
+                <li><Link to="/manager">Manager Portal</Link></li>
+            </ul>
+        </nav>
     );
 }
 

@@ -14,8 +14,8 @@
 .modern-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    max-width: 500px;
+    gap: 20px;
+    max-width: 600px;
     margin: 20px auto;
     padding: 20px;
     background: #ffffff;

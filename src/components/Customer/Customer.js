@@ -21,8 +21,9 @@ function CustomerForm() {
     };
 
     return (
-        <div className="customer-form-container">
+        <div className="customer-container">
             <h1>Customer Portal</h1>
+            <h2>Apply Insurance</h2>
             <form className="modern-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="customerName">Customer Name</label>
@@ -43,6 +44,30 @@ function CustomerForm() {
                         name="dateOfBirth"
                         type="date"
                         value={formData.dateOfBirth}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="customerEmail">Customer E-mail Address</label>
+                    <input
+                        id="customerEmail"
+                        name="customerEmail"
+                        type="text"
+                        placeholder="Enter customer e-mail address"
+                        value={formData.customerEmail}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="customerNumber">Customer Contact Number</label>
+                    <input
+                        id="customerNumber"
+                        name="customerNumber"
+                        type="number"
+                        placeholder="Enter customer contact number"
+                        value={formData.customerNumber}
                         onChange={handleInputChange}
                         required
                     />
@@ -83,7 +108,19 @@ function CustomerForm() {
                         <option value="No">No</option>
                     </select>
                 </div>
-                <button type="submit" className="form-button">Apply</button>
+                <div className="form-group">
+                    <label htmlFor="policyID">Policy ID</label>
+                    <input
+                        id="policyID"
+                        name="policyID"
+                        type="number"
+                        placeholder="Enter policy ID"
+                        value={formData.policyID}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <button type="submit" className="form-button">Apply Insurance</button>
             </form>
         </div>
     );
