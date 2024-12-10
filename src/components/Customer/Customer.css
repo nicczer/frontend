@@ -1,0 +1,101 @@
+.customer-container {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modern-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-group input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4ca1af;
+    box-shadow: 0 0 5px rgba(76, 161, 175, 0.5);
+}
+
+.form-button {
+    background: #4ca1af;
+    color: #ffffff;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-button:hover {
+    background: #2c3e50;
+    color: #4ca1af;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-size: 1rem;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+}
+
+.modern-table th,
+.modern-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.modern-table th {
+    background: #4ca1af;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.modern-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.modern-table tr:hover {
+    background: #f1f1f1;
+}
+
+.modern-table td {
+    color: #555;
+}
