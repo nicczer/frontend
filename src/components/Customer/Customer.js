@@ -1,85 +1,89 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import './Customer.css';
 
-function Customer() {
-    const [policies, setPolicies] = useState([]);
+function CustomerForm() {
     const [formData, setFormData] = useState({
-        name: '',
-        dateOfBirth: '',
-        email: '',
-        phoneNumber: '',
-        policyType: ''
+        customerName: '',
+        policyType: '',
+        policyId: '', // New Policy ID field
+        customerDisease: 'No', // Default to "No"
+        customerSurgery: 'No' // Default to "No"
     });
 
-    useEffect(() => {
-        axios.get('/api/insurance/policies')
-            .then((response) => {
-                setPolicies(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching policies:', error);
-            });
-    }, []);
-
     const handleInputChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
     };
 
-    const applyPolicy = () => {
-        axios.post('/api/insurance/apply', formData)
-            .then((response) => {
-                alert('Policy applied successfully!');
-            })
-            .catch((error) => {
-                console.error('Error applying for policy:', error);
-                alert('Failed to apply for policy. Please try again.');
-            });
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData); // Replace with your API call
+        alert('Form submitted!');
     };
 
     return (
-        <div className="customer-container">
-            <h1>Available Policies</h1>
-            <table className="modern-table">
-                <thead>
-                    <tr>
-                        <th>Policy Name</th>
-                        <th>Policy Type</th>
-                        <th>Premium</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {policies.map((policy) => (
-                        <tr key={policy.policyId}>
-                            <td>{policy.policyName}</td>
-                            <td>{policy.policyType}</td>
-                            <td>{policy.premium}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-            <h2 className="form-title">Apply for a Policy</h2>
-            <form className="modern-form" onSubmit={(e) => { e.preventDefault(); applyPolicy(); }}>
+        <div className="customer-form-container">
+            <h1>Customer Portal</h1>
+            <form className="modern-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input id="name" name="name" type="text" placeholder="Enter your name" onChange={handleInputChange} required />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="dateOfBirth">Date of Birth</label>
-                    <input id="dateOfBirth" name="dateOfBirth" type="date" onChange={handleInputChange} required />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input id="email" name="email" type="email" placeholder="Enter your email" onChange={handleInputChange} required />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="phoneNumber">Phone Number</label>
-                    <input id="phoneNumber" name="phoneNumber" type="text" placeholder="Enter your phone number" onChange={handleInputChange} required />
+                    <label htmlFor="customerName">Customer Name</label>
+                    <input
+                        id="customerName"
+                        name="customerName"
+                        type="text"
+                        placeholder="Enter customer name"
+                        value={formData.customerName}
+                        onChange={handleInputChange}
+                        required
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="policyType">Policy Type</label>
-                    <input id="policyType" name="policyType" type="text" placeholder="Enter policy type" onChange={handleInputChange} required />
+                    <input
+                        id="policyType"
+                        name="policyType"
+                        type="text"
+                        placeholder="Enter policy type"
+                        value={formData.policyType}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="policyId">Policy ID</label>
+                    <input
+                        id="policyId"
+                        name="policyId"
+                        type="text"
+                        placeholder="Enter policy ID"
+                        value={formData.policyId}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="customerDisease">Customer Disease</label>
+                    <select
+                        id="customerDisease"
+                        name="customerDisease"
+                        value={formData.customerDisease}
+                        onChange={handleInputChange}
+                    >
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="customerSurgery">Customer Surgery</label>
+                    <select
+                        id="customerSurgery"
+                        name="customerSurgery"
+                        value={formData.customerSurgery}
+                        onChange={handleInputChange}
+                    >
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
                 </div>
                 <button type="submit" className="form-button">Submit</button>
             </form>
@@ -87,4 +91,4 @@ function Customer() {
     );
 }
 
-export default Customer;
+export default CustomerForm;
