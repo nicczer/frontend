@@ -1,6 +1,7 @@
 .customer-container {
-    padding: 20px;
+    padding: 70px;
     font-family: 'Roboto', sans-serif;
+    text-align: left;
 }
 
 .error-message {
@@ -10,8 +11,25 @@
     margin-bottom: 10px;
 }
 
-.show-policies-button {
-    display: block;
+.status-container form {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.status-container h2 {
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+.status-container input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.check-status-button {
     margin: 0 auto 20px;
     padding: 10px 20px;
     background-color: #4b286d;
@@ -21,6 +39,37 @@
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
+}
+
+.check-status-button:hover {
+    background: #6c3483; /* Lighter purple hover */
+    box-shadow: 0 4px 10px rgba(108, 52, 131, 0.2);
+}
+
+.policy-status {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: green;
+}
+
+.policies-container h2 {
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+.show-policies-button {
+    display: inline-block;
+    margin: 0 auto 20px;
+    padding: 10px 20px;
+    background-color: #4b286d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-bottom: 60px;
+    text-align: left;
 }
 
 .show-policies-button:hover {
@@ -64,7 +113,7 @@ policy-item {
     margin-bottom: 20px;
 }
 
-.modern-form {
+.application-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -120,41 +169,7 @@ policy-item {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-.modern-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px auto;
-    font-size: 1rem;
-    text-align: left;
-    font-family: 'Roboto', sans-serif;
-}
-
-.modern-table th,
-.modern-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-}
-
-.modern-table th {
-    background: #4ca1af;
-    color: #ffffff;
-    text-transform: uppercase;
-}
-
-.modern-table tr:nth-child(even) {
-    background: #f9f9f9;
-}
-
-.modern-table tr:hover {
-    background: #f1f1f1;
-}
-
-.modern-table td {
-    color: #555;
-}
-
-/* Add styles for the select dropdowns */
-.modern-form select {
+.application-form select {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -162,7 +177,7 @@ policy-item {
     transition: border-color 0.3s ease;
 }
 
-.modern-form select:focus {
+.application-form select:focus {
     outline: none;
     border-color: #4b286d; /* Accenture Purple */
     box-shadow: 0 0 5px rgba(75, 40, 109, 0.5);

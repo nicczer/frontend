@@ -16,6 +16,8 @@ function CustomerForm() {
     const [policies, setPolicies] = useState([]);
     const [error, setError] = useState("");
     const [isListVisible, setIsListVisible] = useState(false);
+    const [policyStatus, setPolicyStatus] = useState("");
+    const [customerId, setCustomerId] = useState("");
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -28,15 +30,80 @@ function CustomerForm() {
         alert('Form submitted!');
     };
 
+    const fetchPolicies = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/api/policies"); //Update with your backend endpoint
+            if (!response.ok) {
+                throw new Error("Failed to fetch policies.");
+            }
+            const data = await response.json();
+            setPolicies(data);
+            setError("");
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
     const handleShowPolicies = () => {
         setIsListVisible(true);
         console.log("fetch Policies"); //Replace with your API call to fetch policies
     }
 
+    const fetchPolicyStatus = async () => {
+        try {
+            const response = await fetch(
+                'http://localhost:8080/api/customers/${customerId}/status'
+            ); //Update with your backend endpoint
+            if (!response.ok) {
+                throw new Error("Failed to fetch policy status.");
+            }
+            const data = await response.json();
+            setPolicyStatus(data.policyStatus);
+            setError("");
+        } catch (err) {
+            setError(err.message);
+        }
+     };
+
+    const handleCheckStatus = (e) => {
+        e.preventDefault();
+        if (!customerId) {
+            setError("Customer ID is required.");
+            return;
+        }
+        fetchPolicyStatus();
+    };
+
     return (
         <div className="customer-container">
             <h1>Customer Portal</h1>
+            <p>Here you can check your policy status, view available policies, or apply for a new policy.</p>
+            <div className="status-container">
+                <h2>Check Policy Status</h2>
+                <form onSubmit={handleCheckStatus}>
+                    <label htmlFor="customerId">Enter Customer ID:</label>
+                    <input
+                        type="text"
+                        id="customerId"
+                        value={customerId}
+                        onChange={(e) => setCustomerId(e.target.value)}
+                        placeholder="e.g., 12345"
+                        required
+                    />
+                    <button type="submit" className="check-status-button">
+                        Check Status
+                    </button>
+                </form>
+                {policyStatus && (
+                    <p className="policy-status">
+                        <strong>Policy Status:</strong> {policyStatus}
+                    </p>
+                )}
+                {error && <p className="error-message">{error}</p>}
+            </div>
+
             <div className="policies-container">
+                <h2>View Insurance Policy List</h2>
                 <button onClick={handleShowPolicies} className="show-policies-button">
                     Show Available Policies
                 </button>
@@ -61,7 +128,7 @@ function CustomerForm() {
                 )}
             </div>
             <h2>Insurance Policy Application</h2>
-            <form className="modern-form" onSubmit={handleSubmit}>
+            <form className="application-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="customerName">Customer Name</label>
                     <input

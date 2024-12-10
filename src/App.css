@@ -10,15 +10,15 @@ body {
 /* Main Content Styling */
 .main-content {
     width: 100%;
-    max-width: 900px; /* Align content with the form */
+    max-width: 1000px; /* Align content with the form */
     padding: 20px;
     font-family: 'Roboto', sans-serif;
     margin: 0 auto; /* Center the main content */
 }
 
 /* Modern Form Styling */
-.modern-form {
-    max-width: 800px;
+.application-form {
+    max-width: 1000px;
     margin: 5px auto;
     padding: 20px; /* Add padding inside the form to create space from edges */
     background: #ffffff;

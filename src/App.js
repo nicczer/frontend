@@ -58,7 +58,7 @@ function App() {
         <Router>
             <div className="container">
                 <header>
-                    <h1> Insurance Management Application</h1>
+                    <h1> INSURANCE MANAGEMENT SYSTEM</h1>
                     <nav className="navigation">
                         <Link to="/" className="nav-link">Home</Link>
                     </nav>

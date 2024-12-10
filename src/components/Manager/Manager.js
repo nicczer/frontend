@@ -71,7 +71,7 @@ function Manager() {
                 </div>
                 <div className="form-group">
                     <label htmlFor="termsAndConditions">Terms and Conditions</label>
-                    <textarea id="termsAndConditions" name="termsAndConditions" placeholder="Enter terms and conditions" onChange={handleInputChange} required />
+                    <textarea id="termsAndConditions" name="termsAndConditions" type="text" placeholder="Enter terms and conditions" onChange={handleInputChange} required />
                 </div>
                 <div className="form-group">
                     <label htmlFor="premium">Premium</label>
