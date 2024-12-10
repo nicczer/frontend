@@ -37,6 +37,17 @@ function CustomerForm() {
                     />
                 </div>
                 <div className="form-group">
+                    <label htmlFor="dateOfBirth">Date of Birth (yyyy-mm-dd)</label>
+                    <input
+                        id="dateOfBirth"
+                        name="dateOfBirth"
+                        type="date"
+                        value={formData.dateOfBirth}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
                     <label htmlFor="policyType">Policy Type</label>
                     <input
                         id="policyType"
