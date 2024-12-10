@@ -5,7 +5,7 @@ import "./Home.css";
 function Home() {
     return (
         <div className="home-container">
-            <h1>Welcome to Team TWO Insurance Management application.</h1>
+            <h1>Welcome to Team 2's Insurance Management application!</h1>
             <p>Select your role to continue:</p>
             <div className="role-links">
                 <Link to="/customer" className="role-link">

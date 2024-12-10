@@ -62,8 +62,8 @@
 }
 
 .form-button:hover {
-    background: #2c3e50;
-    color: #4ca1af;
+    background-color: #6c3483;
+    color: white;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 

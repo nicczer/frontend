@@ -83,7 +83,7 @@ function CustomerForm() {
                         <option value="No">No</option>
                     </select>
                 </div>
-                <button type="submit" className="form-button">Submit</button>
+                <button type="submit" className="form-button">Apply</button>
             </form>
         </div>
     );
