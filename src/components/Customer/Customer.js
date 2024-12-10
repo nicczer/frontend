@@ -4,11 +4,18 @@ import './Customer.css';
 function CustomerForm() {
     const [formData, setFormData] = useState({
         customerName: '',
+        dateOfBirth: '',
+        customerEmail: '',
+        customerNumber: '',
         policyType: '',
         policyId: '', // New Policy ID field
         customerDisease: 'No', // Default to "No"
         customerSurgery: 'No' // Default to "No"
     });
+
+    const [policies, setPolicies] = useState([]);
+    const [error, setError] = useState("");
+    const [isListVisible, setIsListVisible] = useState(false);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -21,10 +28,39 @@ function CustomerForm() {
         alert('Form submitted!');
     };
 
+    const handleShowPolicies = () => {
+        setIsListVisible(true);
+        console.log("fetch Policies"); //Replace with your API call to fetch policies
+    }
+
     return (
         <div className="customer-container">
             <h1>Customer Portal</h1>
-            <h2>Apply Insurance</h2>
+            <div className="policies-container">
+                <button onClick={handleShowPolicies} className="show-policies-button">
+                    Show Available Policies
+                </button>
+                {error && <p className="error-message">{error}</p>}
+                {isListVisible && policies.length === 0 && !error && (
+                    <p>Loading policies...</p>
+                )}
+                {isListVisible && policies.length > 0 && (
+                    <ul className="policies-list">
+                        {policies.map((policy) => (
+                            <li key={policy.policyId} className="policy-item">
+                                <h3>{policy.policyName}</h3>
+                                <p>
+                                    <strong>Premium:</strong> ${policy.premiumAmount}
+                                </p>
+                                <p>
+                                    <strong>Duration:</strong> {policy.durationInYears} years
+                                </p>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+            <h2>Insurance Policy Application</h2>
             <form className="modern-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="customerName">Customer Name</label>
@@ -81,18 +117,6 @@ function CustomerForm() {
                         type="text"
                         placeholder="Enter policy type"
                         value={formData.policyType}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="policyId">Policy ID</label>
-                    <input
-                        id="policyId"
-                        name="policyId"
-                        type="text"
-                        placeholder="Enter policy ID"
-                        value={formData.policyId}
                         onChange={handleInputChange}
                         required
                     />
