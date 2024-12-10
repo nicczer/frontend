@@ -99,3 +99,23 @@
 .modern-table td {
     color: #555;
 }
+
+/* Add styles for the select dropdowns */
+.modern-form select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.modern-form select:focus {
+    outline: none;
+    border-color: #4b286d; /* Accenture Purple */
+    box-shadow: 0 0 5px rgba(75, 40, 109, 0.5);
+}
+
+/* Space between form groups */
+.form-group {
+    margin-bottom: 20px;
+}
